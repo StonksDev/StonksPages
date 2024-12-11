@@ -1970,6 +1970,7 @@ a {
 }
 
 .sticky-button-2 {
+  z-index: 99;
   color: #fff;
   text-align: center;
   background-color: #00bb2c;
@@ -2715,7 +2716,17 @@ a {
     top: 70.7vh;
   }
 
-  .sticky-button.contact, .sticky-button-2.contact {
+  .sticky-button.contact {
+    width: 100%;
+    margin-top: 10px;
+    margin-left: 0;
+  }
+
+  .sticky-button-2 {
+    z-index: 99;
+  }
+
+  .sticky-button-2.contact {
     width: 100%;
     margin-top: 10px;
     margin-left: 0;
