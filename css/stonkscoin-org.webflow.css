@@ -293,6 +293,10 @@ a {
   width: 25%;
 }
 
+.feature-content.placement {
+  display: block;
+}
+
 .heading-2 {
   color: #fff;
   margin-top: 20px;
@@ -314,6 +318,7 @@ a {
   line-height: 26px;
   transition: background-color .5s cubic-bezier(.789, .159, .25, 1), color .2s cubic-bezier(.789, .159, .25, 1);
   display: inline-block;
+  position: static;
 }
 
 .button:hover {
@@ -685,7 +690,7 @@ a {
   justify-content: space-around;
   align-items: center;
   width: 90vw;
-  margin: 0 auto 0;
+  margin: 0 auto 5vh;
   padding-bottom: 3vh;
   padding-left: 10vw;
   padding-right: 10vw;
@@ -694,6 +699,8 @@ a {
 
 .feature-wrap.reverse {
   flex-direction: row-reverse;
+  justify-content: space-around;
+  align-items: flex-start;
 }
 
 .feature-wrap.logos {
@@ -1385,6 +1392,7 @@ a {
   justify-content: center;
   align-items: center;
   height: 14vh;
+  margin-top: 0;
   display: flex;
 }
 
@@ -1757,6 +1765,8 @@ a {
 
 .heading-8 {
   color: #000;
+  margin-left: auto;
+  margin-right: auto;
   font-size: 25px;
 }
 
@@ -1878,6 +1888,218 @@ a {
   top: 22.6vh;
   bottom: 0;
   right: 3vw;
+}
+
+.paragraph-5 {
+  text-align: center;
+}
+
+.sticky-button {
+  color: #fff;
+  text-align: center;
+  background-color: #00bb2c;
+  border-radius: 16px;
+  min-width: 50px;
+  margin-right: 0;
+  padding: 15px 40px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 26px;
+  transition: background-color .5s cubic-bezier(.789, .159, .25, 1), color .2s cubic-bezier(.789, .159, .25, 1);
+  display: inline-block;
+  position: static;
+  top: 25px;
+}
+
+.sticky-button:hover {
+  color: #6b6b6b;
+  background-color: #fff;
+}
+
+.sticky-button.outline {
+  color: #5a5a5a;
+  background-color: #0000;
+  border: 1px solid #6e6e6e;
+  margin-left: 10px;
+}
+
+.sticky-button.contact {
+  background-color: #0000;
+  margin-left: 10px;
+  box-shadow: inset 0 0 0 2px #fff3;
+}
+
+.sticky-button.contact:hover {
+  color: #fff;
+  box-shadow: inset 0 0 0 2px #fff;
+}
+
+.sticky-button.top {
+  margin-left: 30px;
+  padding: 20px 35px;
+  font-size: 16px;
+}
+
+.sticky-button.form-button {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  transition-timing-function: cubic-bezier(.215, .61, .355, 1), cubic-bezier(.215, .61, .355, 1);
+}
+
+.sticky-button.form-button:hover {
+  color: #fff;
+  background-color: #000;
+}
+
+.div-block-20 {
+  min-height: 0;
+  position: relative;
+}
+
+.button-3 {
+  position: sticky;
+}
+
+.button-4 {
+  margin-left: auto;
+  margin-right: auto;
+  position: sticky;
+  top: 15px;
+  left: 88.7vw;
+  right: auto;
+}
+
+.sticky-button-2 {
+  color: #fff;
+  text-align: center;
+  background-color: #00bb2c;
+  border: 0 solid #000;
+  border-radius: 16px;
+  min-width: 50px;
+  margin-right: 0;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 26px;
+  transition: padding .7s cubic-bezier(.585, .211, .25, 1), background-color .5s cubic-bezier(.789, .159, .25, 1), color .2s cubic-bezier(.789, .159, .25, 1);
+  display: inline-block;
+  position: sticky;
+  top: 90%;
+  left: 85%;
+}
+
+.sticky-button-2:hover {
+  opacity: 1;
+  color: #6b6b6b;
+  -webkit-text-fill-color: inherit;
+  background-color: #fff;
+  background-image: url('../images/Meme_Man_on_transparent_background.webp.png');
+  background-position: 100%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-attachment: scroll;
+  background-clip: padding-box;
+  border: 0 solid #000;
+  margin-right: 0;
+  padding-left: 20px;
+  padding-right: 45px;
+}
+
+.sticky-button-2.outline {
+  color: #5a5a5a;
+  background-color: #0000;
+  border: 1px solid #6e6e6e;
+  margin-left: 10px;
+}
+
+.sticky-button-2.contact {
+  background-color: #0000;
+  margin-left: 10px;
+  box-shadow: inset 0 0 0 2px #fff3;
+}
+
+.sticky-button-2.contact:hover {
+  color: #fff;
+  box-shadow: inset 0 0 0 2px #fff;
+}
+
+.sticky-button-2.top {
+  margin-left: 30px;
+  padding: 20px 35px;
+  font-size: 16px;
+}
+
+.sticky-button-2.form-button {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  transition-timing-function: cubic-bezier(.215, .61, .355, 1), cubic-bezier(.215, .61, .355, 1);
+}
+
+.sticky-button-2.form-button:hover {
+  color: #fff;
+  background-color: #000;
+}
+
+.wrapper-copy {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  max-width: 1200px;
+  margin-top: 20px;
+  display: flex;
+}
+
+.wrapper-copy.welcome {
+  z-index: 90;
+  align-items: flex-start;
+  width: 100vw;
+  position: relative;
+}
+
+.wrap-copy {
+  text-align: center;
+  max-width: 700px;
+  margin-bottom: 40px;
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+
+.section-7-copy {
+  background-image: linear-gradient(#0048ff70, #0048ff70), url('../images/stocks.881512d9.gif');
+  background-position: 0 0, 0 0;
+  background-size: auto, auto;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  height: 14vh;
+  margin-top: 10vh;
+  display: flex;
+}
+
+.image-8-copy {
+  max-width: 55%;
+  margin-top: 10vh;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 40px;
+  display: block;
+}
+
+.image-2-copy {
+  flex: none;
+  width: auto;
+  max-width: 200%;
+  max-height: 200px;
+  overflow: hidden;
+  box-shadow: 0 0 20px 20px #fff3;
+}
+
+.heading-8-copy {
+  float: left;
+  color: #000;
+  margin: 0 auto;
+  font-size: 25px;
 }
 
 @media screen and (max-width: 991px) {
@@ -2171,6 +2393,22 @@ a {
   .hero-image-2 {
     margin-bottom: 10vw;
   }
+
+  .sticky-button.form-button, .sticky-button-2.form-button {
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 3px;
+  }
+
+  .wrap-copy {
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: none;
+    padding-left: 15vw;
+    padding-right: 15vw;
+    display: flex;
+  }
 }
 
 @media screen and (max-width: 479px) {
@@ -2260,6 +2498,7 @@ a {
 
   .feature-wrap {
     flex-direction: column;
+    margin-top: 3vh;
     margin-bottom: 0;
   }
 
@@ -2474,6 +2713,30 @@ a {
   .hero-image-2.hero-image-mobile {
     position: absolute;
     top: 70.7vh;
+  }
+
+  .sticky-button.contact, .sticky-button-2.contact {
+    width: 100%;
+    margin-top: 10px;
+    margin-left: 0;
+  }
+
+  .wrap-copy {
+    padding-left: 5vw;
+    padding-right: 5vw;
+  }
+
+  .section-7-copy {
+    height: auto;
+  }
+
+  .image-8-copy {
+    max-width: 100%;
+  }
+
+  .image-2-copy {
+    width: 100%;
+    margin-top: 10vh;
   }
 }
 
