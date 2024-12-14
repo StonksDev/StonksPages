@@ -9,6 +9,7 @@
   --medium-slate-blue: #955df1;
 
   --hero-height: 66px;
+  --max-content-width: 960px; 
 }
 
 h1 {
