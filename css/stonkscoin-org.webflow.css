@@ -9,7 +9,6 @@
   --medium-slate-blue: #955df1;
 
   --hero-height: 66px;
-  --max-content-width: 960px; 
 }
 
 h1 {
@@ -89,7 +88,6 @@ section {
 .section-2.column {
   justify-content: space-between;
   height: auto;
-  /* padding: 15vh 10vw; */
   display: flex;
 }
 
@@ -2202,10 +2200,6 @@ section {
     padding-left: 15vw;
     padding-right: 15vw;
     display: flex;
-  }
-
-  .hero-content {
-    /* margin-bottom: 5vh; */
   }
 
   .feature-wrap {
