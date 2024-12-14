@@ -702,11 +702,10 @@ a {
 }
 
 .feature-wrap.logos {
-  grid-column-gap: 1vw;
-  grid-row-gap: 1vw;
+  gap: 16px;
   border-style: none;
   flex-flow: wrap;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   height: auto;
   margin-top: 4vh;
@@ -714,6 +713,9 @@ a {
   margin-right: auto;
   padding-top: 0;
   padding-bottom: 5vh;
+  max-width: 960px;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .feature-wrap.icons {
@@ -1344,8 +1346,6 @@ a {
   flex: 0 auto;
   width: 150px;
   height: 50px;
-  margin-left: auto;
-  margin-right: auto;
   text-decoration: none;
   display: flex;
 }
@@ -2453,11 +2453,6 @@ a {
   .section-5.center {
     padding-bottom: 10vh;
   }
-
-  .link-block-3 {
-    margin-bottom: 10px;
-  }
-
   .section-7 {
     height: auto;
   }
