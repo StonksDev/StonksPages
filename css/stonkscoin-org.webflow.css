@@ -60,6 +60,10 @@ a {
   text-decoration: underline;
 }
 
+section {
+  position: relative;
+}
+
 .section-2 {
   width: 100%;
   height: auto;
@@ -713,7 +717,7 @@ a {
   margin-right: auto;
   padding-top: 0;
   padding-bottom: 5vh;
-  max-width: 960px;
+  max-width: 768px;
   padding-left: 0;
   padding-right: 0;
 }
@@ -927,7 +931,7 @@ a {
 .hero-subhead {
   color: #fff;
   font-size: clamp(1.4rem, 2vw, 1.6rem);
-  line-height: 1;
+  line-height: 1.25;
 }
 
 
@@ -1820,6 +1824,10 @@ a {
 
   .hero-content-socials {
     justify-content: flex-start;
+  }
+
+  .feature-wrap.logos {
+    margin-top: -32px;
   }
 }
 
