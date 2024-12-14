@@ -1765,11 +1765,17 @@ section {
 }
 
 @keyframes rotateImage {
-  0%, 100% {
+  0% {
     transform: rotateZ(-6deg);
+  }
+  15% {
+    transform: rotateZ(0deg);
   }
   50% {
     transform: rotateZ(6deg);
+  }
+  100% {
+    transform: rotateZ(-6deg);
   }
 }
 
