@@ -59,16 +59,16 @@
     align-items: center;
     justify-content: center;
     padding: 10px 8px 10px 0;
+    text-decoration: none;
+}
 
-
+.nav-logo-text {
     color: #fff;
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: #000;
-    filter: drop-shadow(0 0 5px #fff);
+    filter: drop-shadow(0 0 6px #fff);
     font-size: var(--font-size-h5);
-    line-height: 25px;
     font-weight: 800;    
-    text-decoration: none;
 }
 
 .nav-logo img {
@@ -145,6 +145,11 @@
     /* outline: 1px solid green; */
 }
 
+.hero-text .cta-button {
+    /* margin-top: 8px;
+    margin-bottom: 8px; */
+}
+
 @media (min-width: 768px) {
     .hero-text {
         padding-top: 0;
@@ -209,16 +214,8 @@
 
 .hero-social-link {
     display: block;
-    width: 48px;
-    height: 48px;
-}
-
-.hero-social-link:hover {
-    filter: brightness(1.2);
-}
-
-.hero-social-link:active {
-    filter: brightness(0.8);
+    width: 40px;
+    height: 40px;
 }
 
 .hero-image-container {
@@ -240,9 +237,6 @@
 }
 
 @media (min-width: 768px) {
-    /* .hero-image-container {
-        width: 50%;
-    } */
     .hero-image-stonksguy {
         transform: scaleX(-1);
     }
@@ -287,13 +281,13 @@
 
 @media (min-width: 768px) {
     .exchanges-section {
-        margin-top: -40px;
+        margin-top: -20px;
     }
 }
 
 .exchange-list{
     margin: 0 auto;
-    max-width: 768px;
+    max-width: 640px;
     padding-left: 0;
     list-style: none;
     
@@ -306,19 +300,21 @@
 
 .exchange-link {
     /* background-color: #fff; */
-    border: 2px solid #3071ff;
+    border: 2px solid #0028A2;
+    color: #0028A2;
     border-radius: var(--button-radii);
     flex: 0 auto;
-    min-width: 140px;
-    padding-left: 8px;
-    padding-right: 8px;
-    min-height: 48px;
+    min-width: 120px;
+    padding-left: 6px;
+    padding-right: 6px;
+    min-height: 40px;
     text-decoration: none;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     gap: 8px;
+    font-size: var(--font-size-small);
 }
 
 .exchange-link:hover {
@@ -331,8 +327,8 @@
 
 .exchange-link img {
     /* outline: 1px solid red; */
-    width: 36px;
-    height: 36px;
+    width: 24px;
+    height: 24px;
 }
 
 .about-section {
@@ -341,13 +337,21 @@
     padding-bottom: 40px; */
 }
 
-.about-image-container {
+.image-container {
     /* outline: 1px solid red; */
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 50%;
     flex: 1;
+}
+
+@media (min-width: 768px) {
+    .image-container {
+        width: 50%;
+    }
+    .about-section .image-container {
+        order: -1;
+    }
 }
 
 .text-container {
@@ -356,6 +360,14 @@
     flex-direction: column;
     gap: 16px;
     /* outline: 1px solid red; */
+}
+
+.text-container h2 {
+    font-size: var(--font-size-h3);
+}
+
+.text-container h3 {
+    font-size: var(--font-size-h4);
 }
 
 .how-to-buy-section {
@@ -376,14 +388,6 @@
     flex: 1;
 }
 
-.how-to-buy-image-container {
-    /* outline: 1px solid red; */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex: 1;
-}
-
 .roadmap-section {
     /* outline: 1px solid red; */
 }
@@ -393,12 +397,9 @@
     align-items: center;
 }
 
-.roadmap-image-container {
-    /* outline: 1px solid red; */
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.roadmap-section .image-container {
     max-width: 640px;
+    width: 100%;
 }
 
 .ip-section {
@@ -412,25 +413,28 @@
     /* outline: 1px solid red; */
 }
 
-.ip-image-container {
-    /* outline: 1px solid red; */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-width: 360px;
+
+
+.ip-section .image-container {
+    max-width: 420px;
     margin-left: auto;
     margin-right: auto;
-    /* padding: 32px; */
-    flex: 1;
-    /* max-width: 512px; */
 }
 
-.ip-image-container img {
-    /* border: 4px double #fff; */
+@media (min-width: 768px) {
+    .ip-section .image-container {
+        order: -1;
+    }
 }
 
 .contribute-section {
     /* outline: 1px solid red; */
+}
+
+.contribute-section .image-container {
+    max-width: 420px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 
@@ -439,6 +443,10 @@
     background-color: #001142e0;
     background-image: linear-gradient(#0000, #63636300 calc(100% - 0px), #ffffffcf calc(100% - 0px), #fff), linear-gradient(90deg, #000000e0, #001142e0 15%, #0033cccc), url(../images/stocks.881512d9.gif); 
     color: #fff;
+}
+
+.footer-section small {
+    max-width: 720px;
 }
 
 .footer-section .content-container {
@@ -451,7 +459,6 @@
 .footer-logo {
     width: 56px;
     height: 56px;
-    filter: drop-shadow(0 0 6px #fff);
 }
 
 
@@ -460,10 +467,5 @@
     .content-container {
         flex-direction: row;
         gap: 56px;
-    }
-
-    .about-image-container {
-        order: -1;
-        width: 50%;
     }
 }
