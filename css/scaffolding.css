@@ -12,6 +12,10 @@
   --active-brightness: 0.8;
 }
 
+* {
+  cursor: url('../images/cursor.cur'), auto;
+}
+
 html {font-size: 16px;}
 
 body {
