@@ -7,18 +7,32 @@
   --font-size-small: 0.8rem;
 
   --button-radii: 12px;
-  --link-color: #0028A2;
   --hover-brightness: 1.2;
   --active-brightness: 0.8;
+  
+  --color-primary: #0028A2;
+  --color-secondary: #43A047;
+  --color-tertiary: #FF8C00;
+  --color-background: #FAFAFA;
+
+  --color-text: #000;
+  --color-text-light: #FFF;
 }
 
 * {
   cursor: url('../images/cursor.cur'), auto;
 }
 
+::selection {
+  background-color: var(--color-tertiary);
+  color: var(--color-text-light);
+}
+
 html {font-size: 16px;}
 
 body {
+  color: var(--color-text);
+  background-color: var(--color-background);
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   line-height: 1.65;
@@ -31,18 +45,19 @@ p {
 }
 
 a {
-  color: var(--link-color);
-  text-decoration: none;
+  color: var(--color-text);
+  text-decoration: underline;
   overflow-wrap: break-word
 }
 
 a:visited {
-  color: var(--link-color);
+  color: var(--color-text);
 }
 
 a:hover {
   text-decoration: underline;
-  filter: brightness(var(--hover-brightness));
+  /* filter: brightness(var(--hover-brightness)); */
+  color: var(--color-tertiary);
 }
 
 a:active {
@@ -50,10 +65,13 @@ a:active {
 }
 
 .dark a {
-  color: #fff;
+  color: var(--color-text-light);
   text-decoration: underline;
 }
 
+.dark a:hover {
+  color: var(--color-tertiary);
+}
 
 h1,
 h2,
@@ -105,7 +123,9 @@ img {
 
 ul.stonks-list {
   list-style: none;
-  padding-left: 24px;
+  padding-left: 32px;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 ul.stonks-list > li {
@@ -115,16 +135,6 @@ ul.stonks-list > li {
 ul.stonks-list > li::before {
   content: "📈";
   position: absolute;
-  left: -24px;
+  left: -32px;
   /* padding-right: 16px; */
-}
-
-a.cta-button {
-    display: inline-flex;
-    background-color: #00bb2c;
-    color: #fff;
-    font-weight: 600;
-    padding: 12px 24px;
-    border-radius: var(--button-radii);
-    text-decoration: none;
 }
