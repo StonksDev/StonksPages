@@ -28,7 +28,15 @@
   color: var(--color-text-light);
 }
 
-html {font-size: 16px;}
+:focus-visible {
+  outline: 2px solid var(--color-tertiary);
+  outline-offset: 2px;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
 
 body {
   color: var(--color-text);
@@ -56,7 +64,6 @@ a:visited {
 
 a:hover {
   text-decoration: underline;
-  /* filter: brightness(var(--hover-brightness)); */
   color: var(--color-tertiary);
 }
 
@@ -119,6 +126,8 @@ small,
 img {
     width: 100%;
     height: auto;
+    display: block;
+    max-width: 100%;
 }
 
 ul.stonks-list {

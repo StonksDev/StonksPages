@@ -70,16 +70,12 @@
 .text-container h2:after {
     content: "";
     margin-left: 8px;
-    background-image: url(../images/arrow.webp);
-    background-size: 36px;
-    background-repeat: no-repeat;
-    background-position: 0 0;
-    /* transform: rotate(-124deg); */
+    background: url(../images/arrow.webp) no-repeat 0 0 / 36px;
     display: inline-block;
     width: 56px;
+    right: -56px;
     height: 36px;
     position: absolute;
-    right: -56px;
 }
 
 .text-container h3 {
@@ -292,23 +288,30 @@ a.hero-cta:hover {
     transform-origin: center;
     position: absolute;
     right: -60px;
+    will-change: transform;
 }
 
 @keyframes rotate-arrow {
     0% {
-        transform: rotateZ(-6deg) scale(0.75);
+        transform: rotate(-6deg) scale(0.75);
     }
 
     15% {
-        transform: rotateZ(0deg) scale(0.75);
+        transform: rotate(0deg) scale(0.75);
     }
 
     50% {
-        transform: rotateZ(6deg) scale(0.75);
+        transform: rotate(6deg) scale(0.75);
     }
 
     100% {
-        transform: rotateZ(-6deg) scale(0.75);
+        transform: rotate(-6deg) scale(0.75);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-image-arrow {
+        animation: none;
     }
 }
 
@@ -468,5 +471,3 @@ a.exchange-link {
     width: 56px;
     height: 56px;
 }
-
-
