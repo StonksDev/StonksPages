@@ -7,6 +7,7 @@
 @media (min-width: 768px) {
     :root {
         --content-padding-x: 48px;
+        --content-padding-y: 56px;
     }
 }
 
@@ -335,6 +336,13 @@
     height: 24px;
 }
 
+.about-section .image-container {
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
 @media (min-width: 768px) {
     .about-section .image-container {
         order: -1;
@@ -346,6 +354,12 @@
     background-color: #001142e0;
     background-image: linear-gradient(#0000, #63636300 calc(100% - 0px), #ffffffcf calc(100% - 0px), #fff), linear-gradient(90deg, #000000e0, #001142e0 15%, #0033cccc), url(../images/stocks.881512d9.gif);
     color: #fff;
+}
+
+.how-to-buy-section .image-container {
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .roadmap-section .content-container {
@@ -372,7 +386,7 @@
 }
 
 .contribute-section .image-container {
-    max-width: 420px;
+    max-width: 360px;
     margin-left: auto;
     margin-right: auto;
 }
