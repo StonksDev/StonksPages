@@ -1,0 +1,149 @@
+:root {
+  --font-size-h1: 3.05rem;
+  --font-size-h2: 2.44rem;
+  --font-size-h3: 1.95rem;
+  --font-size-h4: 1.56rem;
+  --font-size-h5: 1.25rem;
+  --font-size-small: 0.8rem;
+
+  --button-radii: 12px;
+  --hover-brightness: 1.2;
+  --active-brightness: 0.8;
+  
+  --color-primary: #0028A2;
+  --color-secondary: #43A047;
+  --color-tertiary: #FF8C00;
+  --color-background: #FAFAFA;
+
+  --color-text: #000;
+  --color-text-light: #FFF;
+}
+
+* {
+  cursor: url('../images/cursor.cur'), auto;
+}
+
+::selection {
+  background-color: var(--color-tertiary);
+  color: var(--color-text-light);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-tertiary);
+  outline-offset: 2px;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--color-text);
+  background-color: var(--color-background);
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  line-height: 1.65;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 1rem;
+}
+
+a {
+  color: var(--color-text);
+  text-decoration: underline;
+  overflow-wrap: break-word
+}
+
+a:visited {
+  color: var(--color-text);
+}
+
+a:hover {
+  text-decoration: underline;
+  color: var(--color-tertiary);
+}
+
+a:active {
+  filter: brightness(var(--active-brightness));
+}
+
+.dark a {
+  color: var(--color-text-light);
+  text-decoration: underline;
+}
+
+.dark a:hover {
+  color: var(--color-tertiary);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+h1,
+.text-size-h1 {
+  font-weight: 800;
+  margin-top: 0;
+  font-size: var(--font-size-h1);
+}
+
+h2,
+.text-size-h2 { 
+  font-size: var(--font-size-h2); 
+}
+
+h3,
+.text-size-h3 { 
+  font-size: var(--font-size-h3); 
+}
+
+h4,
+.text-size-h4 { 
+  font-size: var(--font-size-h4); 
+}
+
+h5,
+.text-size-h5 { 
+  font-size: var(--font-size-h5); 
+}
+
+small,
+.text-small {
+  font-size: var(--font-size-small);
+}
+
+img {
+    width: 100%;
+    height: auto;
+    display: block;
+    max-width: 100%;
+}
+
+ul.stonks-list {
+  list-style: none;
+  padding-left: 32px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+ul.stonks-list > li {
+  position: relative;
+}
+
+ul.stonks-list > li::before {
+  content: "📈";
+  position: absolute;
+  left: -32px;
+  /* padding-right: 16px; */
+}
