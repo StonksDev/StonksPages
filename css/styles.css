@@ -172,7 +172,7 @@ a.nav-logo {
 }
 
 .nav-menu-list a:hover {
-    color: var(--color-tertiary);
+    color: var(--color-secondary);
 }
 
 .nav-social {
@@ -185,7 +185,7 @@ a.nav-logo {
 }
 
 .nav-social:hover {
-    outline: 2px solid var(--color-tertiary);
+    outline: 2px solid var(--color-secondary);
 }
 
 
@@ -235,7 +235,7 @@ a.nav-logo {
 
 a.hero-cta {
     display: inline-flex;
-    background-color: var(--color-secondary);
+    background-color: var(--color-tertiary);
     color: #fff;
     font-weight: 600;
     padding: 12px 24px;
@@ -246,7 +246,7 @@ a.hero-cta {
 }
 
 a.hero-cta:hover {
-    background-color: var(--color-tertiary);
+    background-color: var(--color-secondary);
     color: #000;
 }
 
@@ -277,7 +277,7 @@ a.hero-cta:hover {
 }
 
 .hero-social-link:hover {
-    outline: 2px solid var(--color-tertiary);
+    outline: 2px solid var(--color-secondary);
     outline-offset: 2px;
 }
 
@@ -388,7 +388,7 @@ a.exchange-link {
 }
 
 .exchange-link:hover {
-    background-color: var(--color-tertiary);
+    background-color: var(--color-secondary);
     color: #000;
 }
 

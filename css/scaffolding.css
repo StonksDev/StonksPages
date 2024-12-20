@@ -9,8 +9,8 @@
   --button-radii: 12px;
   
   --color-primary: #0028A2;
-  --color-secondary: #43A047;
-  --color-tertiary: #FF8C00;
+  --color-secondary: #FF8C00;
+  --color-tertiary: #43A047;
   --color-background: #FAFAFA;
 
   --color-text: #000;
@@ -22,12 +22,12 @@
 }
 
 ::selection {
-  background-color: var(--color-tertiary);
+  background-color: var(--color-secondary);
   color: var(--color-text-light);
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-tertiary);
+  outline: 2px solid var(--color-secondary);
   outline-offset: 2px;
 }
 
@@ -62,7 +62,7 @@ a:visited {
 
 a:hover {
   text-decoration: underline;
-  color: var(--color-tertiary);
+  color: var(--color-secondary);
 }
 
 a:active {
@@ -75,7 +75,7 @@ a:active {
 }
 
 .dark a:hover {
-  color: var(--color-tertiary);
+  color: var(--color-secondary);
 }
 
 h1,
