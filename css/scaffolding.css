@@ -130,20 +130,23 @@ img {
     max-width: 100%;
 }
 
-ul.stonks-list {
+.stonks-list {
   list-style: none;
   padding-left: 32px;
   margin-top: 0;
   margin-bottom: 0;
 }
 
-ul.stonks-list > li {
+.stonks-list > li {
   position: relative;
 }
 
-ul.stonks-list > li::before {
+.stonks-list > li::before {
   content: "📈";
   position: absolute;
   left: -32px;
-  /* padding-right: 16px; */
+}
+
+.stonks-list .stonks-list-glif::before {
+  content: "🤖";
 }
