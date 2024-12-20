@@ -7,8 +7,6 @@
   --font-size-small: 0.8rem;
 
   --button-radii: 12px;
-  --hover-brightness: 1.2;
-  --active-brightness: 0.8;
   
   --color-primary: #0028A2;
   --color-secondary: #43A047;
@@ -68,7 +66,7 @@ a:hover {
 }
 
 a:active {
-  filter: brightness(var(--active-brightness));
+  filter: opacity(0.85);
 }
 
 .dark a {

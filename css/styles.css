@@ -126,6 +126,7 @@ a.nav-logo {
     min-height: 80px;
 }
 
+
 .nav-logo-text {
     color: #fff;
     -webkit-text-stroke-width: 1px;
@@ -157,6 +158,7 @@ a.nav-logo {
     text-transform: uppercase;
 }
 
+
 @media (min-width: 768px) {
     .nav-menu-list {
         margin-right: 0;
@@ -170,8 +172,22 @@ a.nav-logo {
 }
 
 .nav-menu-list a:hover {
-    text-decoration: underline;
+    color: var(--color-tertiary);
 }
+
+.nav-social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+}
+
+.nav-social:hover {
+    outline: 2px solid var(--color-tertiary);
+}
+
 
 .header-hero-section {
     text-align: center;
@@ -254,12 +270,15 @@ a.hero-cta:hover {
 
 .hero-social-link {
     display: block;
-    width: 40px;
-    height: 40px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    overflow: hidden;
 }
 
 .hero-social-link:hover {
-    filter: brightness(var(--hover-brightness));
+    outline: 2px solid var(--color-tertiary);
+    outline-offset: 2px;
 }
 
 .hero-image-container {
@@ -332,7 +351,7 @@ a.hero-cta:hover {
 
 .exchange-list {
     margin: 0 auto;
-    max-width: 800px;
+    max-width: 640px;
     padding-left: 0;
     list-style: none;
 
@@ -344,7 +363,7 @@ a.hero-cta:hover {
 }
 
 a.exchange-link {
-    border: 2px solid var(--color-primary);
+    border: 1px solid var(--color-primary);
     border-radius: var(--button-radii);
     flex: 0 auto;
     min-width: 140px;
