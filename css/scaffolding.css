@@ -1,0 +1,150 @@
+:root {
+  --font-size-h1: 3.05rem;
+  --font-size-h2: 2.44rem;
+  --font-size-h3: 1.95rem;
+  --font-size-h4: 1.56rem;
+  --font-size-h5: 1.25rem;
+  --font-size-small: 0.8rem;
+
+  --button-radii: 12px;
+  
+  --color-primary: #001142;
+  --color-secondary: #FF8C00;
+  --color-tertiary: #43A047;
+  --color-background: #FAFAFA;
+
+  --color-text: #000;
+  --color-text-light: #FFF;
+}
+
+* {
+  cursor: url('../images/cursor.cur'), auto;
+}
+
+::selection {
+  background-color: var(--color-secondary);
+  color: var(--color-text-light);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-secondary);
+  outline-offset: 2px;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--color-text);
+  background-color: var(--color-background);
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  line-height: 1.65;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 1rem;
+}
+
+a {
+  color: var(--color-text);
+  text-decoration: underline;
+  overflow-wrap: break-word
+}
+
+a:visited {
+  color: var(--color-text);
+}
+
+a:hover {
+  text-decoration: underline;
+  color: var(--color-secondary);
+}
+
+a:active {
+  filter: opacity(0.85);
+}
+
+.dark a {
+  color: var(--color-text-light);
+  text-decoration: underline;
+}
+
+.dark a:hover {
+  color: var(--color-secondary);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+h1,
+.text-size-h1 {
+  font-weight: 800;
+  margin-top: 0;
+  font-size: var(--font-size-h1);
+}
+
+h2,
+.text-size-h2 { 
+  font-size: var(--font-size-h2); 
+}
+
+h3,
+.text-size-h3 { 
+  font-size: var(--font-size-h3); 
+}
+
+h4,
+.text-size-h4 { 
+  font-size: var(--font-size-h4); 
+}
+
+h5,
+.text-size-h5 { 
+  font-size: var(--font-size-h5); 
+}
+
+small,
+.text-small {
+  font-size: var(--font-size-small);
+}
+
+img {
+    width: 100%;
+    height: auto;
+    display: block;
+    max-width: 100%;
+}
+
+.stonks-list {
+  list-style: none;
+  padding-left: 32px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.stonks-list > li {
+  position: relative;
+}
+
+.stonks-list > li::before {
+  content: "📈";
+  position: absolute;
+  left: -32px;
+}
+
+.stonks-list .stonks-list-glif::before {
+  content: "🤖";
+}
