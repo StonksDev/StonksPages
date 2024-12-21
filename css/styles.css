@@ -25,7 +25,7 @@
 }
 
 @media (min-width: 1200px) {
-    :root {
+        :root {
         --content-gap-x: 88px;
     }
 }
@@ -97,9 +97,9 @@
 }
 
 .header-section {
-    background-color: #001142e0;
+    background-color: var(--color-primary);
     background-image: var(--gradient-white-fadeout), var(--gradient-dark-overlay), var(--background-image-stocks);
-    color: #fff;
+    color: var(--color-text-light);
     padding-bottom: 40px;
 }
 
@@ -108,6 +108,51 @@
         padding-bottom: 140px;
     }
 }
+
+.header-nav-section--sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+    background-color: var(--color-primary);
+    background-image: var(--gradient-dark-overlay), var(--background-image-stocks);
+    transform: translateY(-120%);
+    transition: transform 0.15s ease-out;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 1);
+}
+
+.header-nav-section--sticky.visible {
+    transform: translateY(0);
+}
+
+.header-nav-section--sticky .content-container {
+    align-items: center;
+    min-height: 64px;
+}
+
+.header-nav-section--sticky .buy-button {
+    font-size: var(--font-size-h6);
+    padding: 8px 16px;
+}
+
+
+
+@media (min-width: 768px) {
+    .header-nav-section--sticky .content-container {
+        min-height: 80px;
+    }
+
+    .header-nav-section--sticky .buy-button {
+        padding: 10px 20px;
+        font-size: var(--font-size-h5);
+    }
+}
+
+.header-nav-section .content-container {
+    flex-direction: row;
+}
+
 
 .header-nav-section .content-container,
 .header-hero-section .content-container {
@@ -126,11 +171,28 @@ a.nav-logo {
     min-height: 80px;
 }
 
+a.buy-button {
+    display: inline-flex;
+    background-color: var(--color-tertiary);
+    color: var(--color-text-light);
+    font-weight: 600;
+    padding: 12px 24px;
+    border-radius: var(--button-radii);
+    text-decoration: none;
+    font-size: var(--font-size-h5);
+}
+
+a.buy-button:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-text);
+}
+
+
 
 .nav-logo-text {
-    color: #fff;
+    color: var(--color-text-light);
     -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: #000;
+    -webkit-text-stroke-color: var(--color-text);
     filter: drop-shadow(0 0 6px #fff);
     font-size: var(--font-size-h4);
     font-weight: 800;
@@ -139,11 +201,11 @@ a.nav-logo {
 .nav-logo img {
     width: 48px;
     margin-left: -8px;
-    margin-right: 4px;
+    margin-right: 6px;
 }
 
-.nav-menu-list {
-    margin: 0 auto;
+.nav-list {
+    margin: 0 -8px 0 auto;
     padding-left: 0;
     list-style: none;
 
@@ -151,41 +213,52 @@ a.nav-logo {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 8px;
     row-gap: 0;
     align-items: center;
-    font-weight: 600;
-    text-transform: uppercase;
 }
 
-
 @media (min-width: 768px) {
-    .nav-menu-list {
-        margin-right: 0;
+    .nav-list {
+        gap: 8px;
     }
 }
 
-.nav-menu-list a {
-    color: #fff;
+a.nav-list-item-link {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: var(--color-text-light);
     text-decoration: none;
     padding: 8px;
 }
 
-.nav-menu-list a:hover {
+a.nav-list-item-link:hover {
     color: var(--color-secondary);
+    outline: 2px solid var(--color-secondary);
 }
 
-.nav-social {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 44px;
-    height: 44px;
+.nav-list-social-link-text {
+    display: none;
+}
+
+.nav-list-item-link img {
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
 }
 
-.nav-social:hover {
-    outline: 2px solid var(--color-secondary);
+
+@media (min-width: 768px) {
+    .nav-list-social-link-text {
+        display: block;
+    }
+    
+    .nav-list-item img {
+        width: 28px;
+        height: 28px;
+    }
 }
 
 
@@ -223,7 +296,7 @@ a.nav-logo {
 
 .hero-text-primary {
     -webkit-text-stroke-width: 2px;
-    -webkit-text-stroke-color: #000;
+    -webkit-text-stroke-color: var(--color-text);
     filter: drop-shadow(0 0 5px #fff);
     font-size: clamp(4rem, 10vw, 5rem);
     font-weight: 700;
@@ -233,24 +306,13 @@ a.nav-logo {
     font-size: var(--font-size-h5);
 }
 
-a.hero-cta {
-    display: inline-flex;
-    background-color: var(--color-tertiary);
-    color: #fff;
-    font-weight: 600;
-    padding: 12px 24px;
-    border-radius: var(--button-radii);
-    text-decoration: none;
-    font-size: var(--font-size-h5);
+
+
+.hero-text .buy-button {
     margin: 16px 0;
 }
 
-a.hero-cta:hover {
-    background-color: var(--color-secondary);
-    color: #000;
-}
-
-.hero-socials-list {
+.hero-links-list {
     margin: 0;
     padding-left: 0;
     list-style: none;
@@ -263,12 +325,12 @@ a.hero-cta:hover {
 }
 
 @media (min-width: 768px) {
-    .hero-socials-list {
+    .hero-links-list {
         justify-content: flex-start;
     }
 }
 
-.hero-social-link {
+.hero-links-list-item {
     display: block;
     width: 48px;
     height: 48px;
@@ -276,9 +338,8 @@ a.hero-cta:hover {
     overflow: hidden;
 }
 
-.hero-social-link:hover {
+.hero-links-list-item:hover {
     outline: 2px solid var(--color-secondary);
-    outline-offset: 2px;
 }
 
 .hero-image-container {
@@ -389,7 +450,7 @@ a.exchange-link {
 
 .exchange-link:hover {
     background-color: var(--color-secondary);
-    color: #000;
+    color: var(--color-text);
 }
 
 .exchange-link:active {
@@ -416,9 +477,9 @@ a.exchange-link {
 
 
 .how-to-buy-section {
-    background-color: #001142e0;
+    background-color: var(--color-primary);
     background-image: var(--gradient-dark-overlay), var(--background-image-stocks);
-    color: #fff;
+    color: var(--color-text-light);
 }
 
 .how-to-buy-section .image-container {
@@ -439,9 +500,9 @@ a.exchange-link {
 }
 
 .ip-section {
-    background-color: #001142e0;
+    background-color: var(--color-primary);
     background-image: var(--gradient-dark-overlay), var(--background-image-stocks);
-    color: #fff;
+    color: var(--color-text-light);
 }
 
 
@@ -470,9 +531,9 @@ a.exchange-link {
 
 
 .footer-section {
-    background-color: #001142e0;
+    background-color: var(--color-primary);
     background-image: var(--gradient-dark-overlay), var(--background-image-stocks);
-    color: #fff;
+    color: var(--color-text-light);
 }
 
 .footer-section small {
