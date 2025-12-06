@@ -1,0 +1,311 @@
+@import "tailwindcss";
+
+:root {
+  --color-primary: #001142;
+  --color-secondary: #FF8C00;
+  --color-tertiary: #43A047;
+  --color-background: #FAFAFA;
+  --color-text: #000;
+  --color-text-light: #FFF;
+
+  --font-size-h1: 3.05rem;
+  --font-size-h2: 2.44rem;
+  --font-size-h3: 1.95rem;
+  --font-size-h4: 1.56rem;
+  --font-size-h5: 1.25rem;
+  --font-size-small: 0.8rem;
+
+  --button-radii: 12px;
+  --max-content-width: 1152px;
+  --content-gap-x: 24px;
+  --content-gap-y: 48px;
+
+  --gradient-dark-overlay: linear-gradient(90deg, #000000e0, #001142c0 15vw, #0033cccc);
+  --gradient-white-fadeout: linear-gradient(#0000, #63636300 calc(100% - 150px), #fafafacf calc(100% - 75px), var(--color-background));
+}
+
+@media (min-width: 768px) {
+  :root {
+    --content-gap-x: 48px;
+    --content-gap-y: 56px;
+  }
+}
+
+@media (min-width: 960px) {
+  :root {
+    --content-gap-x: 72px;
+    --content-gap-y: 64px;
+  }
+}
+
+@media (min-width: 1200px) {
+  :root {
+    --content-gap-x: 88px;
+  }
+}
+
+@theme inline {
+  --color-primary: var(--color-primary);
+  --color-secondary: var(--color-secondary);
+  --color-tertiary: var(--color-tertiary);
+  --color-background: var(--color-background);
+  --font-sans: var(--font-open-sans);
+}
+
+* {
+  cursor: url('/images/cursor.cur'), auto;
+}
+
+::selection {
+  background-color: var(--color-secondary);
+  color: var(--color-text-light);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-secondary);
+  outline-offset: 2px;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  color: var(--color-text);
+  background-color: var(--color-background);
+  font-weight: 400;
+  line-height: 1.65;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 1rem;
+}
+
+a {
+  color: inherit;
+  text-decoration: underline;
+  overflow-wrap: break-word;
+}
+
+a:hover {
+  color: var(--color-secondary);
+}
+
+a:active {
+  filter: opacity(0.85);
+}
+
+img {
+  width: 100%;
+  height: auto;
+  display: block;
+  max-width: 100%;
+}
+
+/* Text stroke effect for hero */
+.text-stroke {
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: var(--color-text);
+  filter: drop-shadow(0 0 5px #fff);
+}
+
+.text-stroke-sm {
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: var(--color-text);
+  filter: drop-shadow(0 0 6px #fff);
+}
+
+/* Stock background styles */
+.stock-bg {
+  background-color: var(--color-primary);
+  background-image: var(--gradient-dark-overlay), url('/images/stocksbg.gif');
+}
+
+.stock-bg-header {
+  background-color: var(--color-primary);
+  background-image: var(--gradient-white-fadeout), var(--gradient-dark-overlay), url('/images/stocksbg.gif');
+}
+
+/* Arrow rotation animation */
+@keyframes rotate-arrow {
+  0% {
+    transform: rotate(-6deg) scale(0.75);
+  }
+  15% {
+    transform: rotate(0deg) scale(0.75);
+  }
+  50% {
+    transform: rotate(6deg) scale(0.75);
+  }
+  100% {
+    transform: rotate(-6deg) scale(0.75);
+  }
+}
+
+.animate-arrow {
+  animation: rotate-arrow 2s linear infinite;
+  transform-origin: center;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-arrow {
+    animation: none;
+  }
+}
+
+/* Content container */
+.content-container {
+  box-sizing: content-box;
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  padding: var(--content-gap-y) var(--content-gap-x);
+  display: flex;
+  flex-direction: column;
+  gap: var(--content-gap-y) var(--content-gap-x);
+}
+
+@media (min-width: 768px) {
+  .content-container {
+    flex-direction: row;
+  }
+}
+
+/* Stonks list with emoji bullets */
+.stonks-list {
+  list-style: none;
+  padding-left: 32px;
+  margin: 0;
+}
+
+.stonks-list > li {
+  position: relative;
+}
+
+.stonks-list > li::before {
+  content: "📈";
+  position: absolute;
+  left: -32px;
+}
+
+.stonks-list .stonks-list-glif::before {
+  content: "🤖";
+}
+
+.stonks-list a {
+  text-decoration: none;
+}
+
+/* Dark section link styles */
+.dark a {
+  color: var(--color-text-light);
+}
+
+.dark a:hover {
+  color: var(--color-secondary);
+}
+
+/* Buy button */
+.buy-button {
+  display: inline-flex;
+  background-color: var(--color-tertiary);
+  color: var(--color-text-light);
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: var(--button-radii);
+  text-decoration: none;
+  font-size: var(--font-size-h5);
+}
+
+.buy-button:hover {
+  background-color: var(--color-secondary);
+  color: var(--color-text);
+}
+
+/* Exchange link */
+.exchange-link {
+  border: 1px solid var(--color-primary);
+  border-radius: var(--button-radii);
+  flex: 0 auto;
+  min-width: 140px;
+  padding: 0 4px;
+  min-height: 32px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: var(--font-size-small);
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+@media (min-width: 768px) {
+  .exchange-link {
+    min-width: 160px;
+    padding: 0 6px;
+    min-height: 40px;
+  }
+}
+
+.exchange-link:hover {
+  background-color: var(--color-secondary);
+  color: var(--color-text);
+}
+
+/* Section heading with arrow */
+.section-heading {
+  font-size: var(--font-size-h3);
+  font-weight: 600;
+  margin-bottom: 16px;
+  width: fit-content;
+  position: relative;
+}
+
+.section-heading::after {
+  content: "";
+  margin-left: 8px;
+  background: url('/images/arrow.webp') no-repeat 0 0 / 36px;
+  display: inline-block;
+  width: 56px;
+  right: -56px;
+  height: 36px;
+  position: absolute;
+}
+
+/* Sticky header styles */
+.sticky-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 50;
+  background-color: var(--color-primary);
+  background-image: var(--gradient-dark-overlay), url('/images/stocksbg.gif');
+  transform: translateY(-120%);
+  transition: transform 0.15s ease-out;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 1);
+}
+
+.sticky-header.visible {
+  transform: translateY(0);
+}
+
+.sticky-header a {
+  text-decoration: none;
+  color: var(--color-text-light);
+}
+
+.sticky-header a:hover {
+  color: var(--color-secondary);
+}
+
+header nav a {
+  text-decoration: none;
+}
