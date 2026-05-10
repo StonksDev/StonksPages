@@ -1,0 +1,745 @@
+{
+  "address": "F8W8ZzRoE4nufko2tdoEZWggNm8J6Zq6yZKwAEJUPrpm",
+  "metadata": {
+    "name": "token_wrapper",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "initialize",
+      "docs": [
+        "Initializes the token wrapper program for a specific mint pair.",
+        "This will calculate the wrapper supply based on original mint supply and conversion ratio,",
+        "mint all wrapper tokens to the vault, and freeze the mint authorities."
+      ],
+      "discriminator": [
+        175,
+        175,
+        109,
+        31,
+        13,
+        152,
+        155,
+        237
+      ],
+      "accounts": [
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "original_mint",
+          "docs": [
+            "Original token mint"
+          ]
+        },
+        {
+          "name": "wrapper_mint",
+          "docs": [
+            "Wrapper token mint"
+          ],
+          "writable": true
+        },
+        {
+          "name": "original_vault",
+          "docs": [
+            "Vault account to hold original tokens"
+          ],
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  111,
+                  114,
+                  105,
+                  103,
+                  105,
+                  110,
+                  97,
+                  108,
+                  95,
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "original_mint"
+              },
+              {
+                "kind": "account",
+                "path": "wrapper_mint"
+              }
+            ]
+          }
+        },
+        {
+          "name": "wrapper_vault",
+          "docs": [
+            "Vault account to hold wrapper tokens (all pre-minted tokens)"
+          ],
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  119,
+                  114,
+                  97,
+                  112,
+                  112,
+                  101,
+                  114,
+                  95,
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "original_mint"
+              },
+              {
+                "kind": "account",
+                "path": "wrapper_mint"
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault_authority",
+          "docs": [
+            "Vault authority PDA"
+          ],
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116,
+                  95,
+                  97,
+                  117,
+                  116,
+                  104,
+                  111,
+                  114,
+                  105,
+                  116,
+                  121
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "original_mint"
+              },
+              {
+                "kind": "account",
+                "path": "wrapper_mint"
+              }
+            ]
+          }
+        },
+        {
+          "name": "wrapper_state",
+          "docs": [
+            "Wrapper state account to track settings"
+          ],
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  119,
+                  114,
+                  97,
+                  112,
+                  112,
+                  101,
+                  114,
+                  95,
+                  115,
+                  116,
+                  97,
+                  116,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "original_mint"
+              },
+              {
+                "kind": "account",
+                "path": "wrapper_mint"
+              }
+            ]
+          }
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "associated_token_program",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "rent",
+          "address": "SysvarRent111111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "conversion_ratio",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "unwrap",
+      "docs": [
+        "Unwraps wrapper tokens back to original tokens."
+      ],
+      "discriminator": [
+        126,
+        175,
+        198,
+        14,
+        212,
+        69,
+        50,
+        44
+      ],
+      "accounts": [
+        {
+          "name": "user",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "original_mint",
+          "docs": [
+            "Original token mint"
+          ]
+        },
+        {
+          "name": "wrapper_mint",
+          "docs": [
+            "Wrapper token mint"
+          ]
+        },
+        {
+          "name": "user_original_account",
+          "writable": true
+        },
+        {
+          "name": "user_wrapper_account",
+          "writable": true
+        },
+        {
+          "name": "original_vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  111,
+                  114,
+                  105,
+                  103,
+                  105,
+                  110,
+                  97,
+                  108,
+                  95,
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "original_mint"
+              },
+              {
+                "kind": "account",
+                "path": "wrapper_mint"
+              }
+            ]
+          }
+        },
+        {
+          "name": "wrapper_vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  119,
+                  114,
+                  97,
+                  112,
+                  112,
+                  101,
+                  114,
+                  95,
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "original_mint"
+              },
+              {
+                "kind": "account",
+                "path": "wrapper_mint"
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault_authority",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116,
+                  95,
+                  97,
+                  117,
+                  116,
+                  104,
+                  111,
+                  114,
+                  105,
+                  116,
+                  121
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "original_mint"
+              },
+              {
+                "kind": "account",
+                "path": "wrapper_mint"
+              }
+            ]
+          }
+        },
+        {
+          "name": "wrapper_state",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  119,
+                  114,
+                  97,
+                  112,
+                  112,
+                  101,
+                  114,
+                  95,
+                  115,
+                  116,
+                  97,
+                  116,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "original_mint"
+              },
+              {
+                "kind": "account",
+                "path": "wrapper_mint"
+              }
+            ]
+          }
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        }
+      ],
+      "args": [
+        {
+          "name": "wrapper_amount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "wrap",
+      "docs": [
+        "Wraps original tokens into wrapper tokens at the configured ratio."
+      ],
+      "discriminator": [
+        178,
+        40,
+        10,
+        189,
+        228,
+        129,
+        186,
+        140
+      ],
+      "accounts": [
+        {
+          "name": "user",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "original_mint",
+          "docs": [
+            "Original token mint"
+          ]
+        },
+        {
+          "name": "wrapper_mint",
+          "docs": [
+            "Wrapper token mint"
+          ]
+        },
+        {
+          "name": "user_original_account",
+          "writable": true
+        },
+        {
+          "name": "user_wrapper_account",
+          "writable": true
+        },
+        {
+          "name": "original_vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  111,
+                  114,
+                  105,
+                  103,
+                  105,
+                  110,
+                  97,
+                  108,
+                  95,
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "original_mint"
+              },
+              {
+                "kind": "account",
+                "path": "wrapper_mint"
+              }
+            ]
+          }
+        },
+        {
+          "name": "wrapper_vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  119,
+                  114,
+                  97,
+                  112,
+                  112,
+                  101,
+                  114,
+                  95,
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "original_mint"
+              },
+              {
+                "kind": "account",
+                "path": "wrapper_mint"
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault_authority",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116,
+                  95,
+                  97,
+                  117,
+                  116,
+                  104,
+                  111,
+                  114,
+                  105,
+                  116,
+                  121
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "original_mint"
+              },
+              {
+                "kind": "account",
+                "path": "wrapper_mint"
+              }
+            ]
+          }
+        },
+        {
+          "name": "wrapper_state",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  119,
+                  114,
+                  97,
+                  112,
+                  112,
+                  101,
+                  114,
+                  95,
+                  115,
+                  116,
+                  97,
+                  116,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "original_mint"
+              },
+              {
+                "kind": "account",
+                "path": "wrapper_mint"
+              }
+            ]
+          }
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "WrapperState",
+      "discriminator": [
+        173,
+        106,
+        14,
+        199,
+        93,
+        182,
+        157,
+        181
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "MathOverflow",
+      "msg": "Math operation overflow"
+    },
+    {
+      "code": 6001,
+      "name": "InvalidConversionAmount",
+      "msg": "Invalid conversion amount - must be divisible by conversion ratio"
+    },
+    {
+      "code": 6002,
+      "name": "InvalidOriginalMint",
+      "msg": "Invalid original mint"
+    },
+    {
+      "code": 6003,
+      "name": "InvalidWrapperMint",
+      "msg": "Invalid wrapper mint"
+    },
+    {
+      "code": 6004,
+      "name": "InvalidAmount",
+      "msg": "Amount cannot be zero"
+    },
+    {
+      "code": 6005,
+      "name": "InsufficientVaultBalance",
+      "msg": "Insufficient vault balance"
+    },
+    {
+      "code": 6006,
+      "name": "InsufficientInitialBalance",
+      "msg": "Insufficient initial balance for initialization"
+    },
+    {
+      "code": 6007,
+      "name": "AlreadyInitialized",
+      "msg": "Program already initialized"
+    },
+    {
+      "code": 6008,
+      "name": "InvalidMintAuthority",
+      "msg": "Invalid mint authority - must be the vault authority"
+    },
+    {
+      "code": 6009,
+      "name": "AlreadyMinted",
+      "msg": "Wrapper tokens already minted"
+    },
+    {
+      "code": 6010,
+      "name": "DecimalsMismatch",
+      "msg": "Original and wrapper mints must have the same decimals"
+    },
+    {
+      "code": 6011,
+      "name": "InsufficientBalance",
+      "msg": "Insufficient balance"
+    },
+    {
+      "code": 6012,
+      "name": "InvalidConversionRatio",
+      "msg": "Invalid conversion ratio"
+    }
+  ],
+  "types": [
+    {
+      "name": "WrapperState",
+      "docs": [
+        "Master state for the token wrapper program"
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "is_initialized",
+            "docs": [
+              "Whether the wrapper has been initialized"
+            ],
+            "type": "bool"
+          },
+          {
+            "name": "bump",
+            "docs": [
+              "The canonical bump seed for the wrapper state PDA"
+            ],
+            "type": "u8"
+          },
+          {
+            "name": "vault_bump",
+            "docs": [
+              "The canonical bump seed for the vault authority PDA"
+            ],
+            "type": "u8"
+          },
+          {
+            "name": "original_mint",
+            "docs": [
+              "Original token mint"
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "wrapper_mint",
+            "docs": [
+              "Wrapper token mint"
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "conversion_ratio",
+            "docs": [
+              "Conversion ratio (how many wrapper tokens per 1 original token)"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "wrapper_total_supply",
+            "docs": [
+              "Total supply of wrapper tokens that were minted"
+            ],
+            "type": "u64"
+          }
+        ]
+      }
+    }
+  ]
+}
