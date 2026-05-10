@@ -69,7 +69,7 @@ export default function About() {
             >
               <code>
                 <span className="hidden min-[560px]:inline min-[768px]:hidden min-[1080px]:inline">{WRAPPER_TOKEN_ADDRESS}</span>
-                <span className="inline min-[560px]:hidden min-[768px]:inline min-[1080px]:hidden">{shortenAddress(WRAPPER_TOKEN_ADDRESS, 6, 6)}</span>
+                <span className="inline min-[560px]:hidden min-[768px]:inline min-[1080px]:hidden">{shortenAddress(WRAPPER_TOKEN_ADDRESS, 8, 6)}</span>
               </code>
             </Link>
           </p>

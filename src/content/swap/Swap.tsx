@@ -37,7 +37,7 @@ const TABLE_DATA = [
             <Link
                 href={`https://solscan.io/token/${process.env.NEXT_PUBLIC_WRAPPER_TOKEN_ADDRESS!}`}
             >
-                {shortenAddress(process.env.NEXT_PUBLIC_WRAPPER_TOKEN_ADDRESS!, 6, 4)}
+                {shortenAddress(process.env.NEXT_PUBLIC_WRAPPER_TOKEN_ADDRESS!, 8, 4)}
             </Link>
         ),
         className: "font-mono text-base",
