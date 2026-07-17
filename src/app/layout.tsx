@@ -34,11 +34,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: BASE_URL,
   },
-  // TODO enable before production
-  robots: {
-    index: false,
-    follow: false,
-  },
   openGraph: {
     type: "website",
     url: BASE_URL,
