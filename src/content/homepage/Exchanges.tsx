@@ -25,11 +25,6 @@ const exchanges = [
     icon: "/images/icons/birdeye.webp",
   },
   {
-    name: "KuCoin",
-    url: "https://www.kucoin.com/trade/STNK-USDT",
-    icon: "/images/icons/kucoin.svg",
-  },
-  {
     name: "Moonshot",
     url: "https://moonshot.money/pnAdupsrO3lQARxKF9wAB5BM?",
     icon: "/images/icons/moonshot.webp",
@@ -50,9 +45,9 @@ export default function Exchanges() {
   return (
     <Section>
       <ContentContainer className="py-0">
-        <ul className="m-0 mx-auto w-full max-w-[720px] p-0 list-none grid grid-cols-1 min-[400px]:grid-cols-2 md:grid-cols-4 gap-4">
+        <ul className="m-0 mx-auto w-full max-w-[720px] p-0 list-none flex flex-wrap justify-center gap-4">
           {exchanges.map((exchange) => (
-            <li key={exchange.name}>
+            <li key={exchange.name} className="w-full min-[400px]:w-[calc(50%-0.5rem)] md:w-[calc(25%-0.75rem)]">
               <Button
                 href={exchange.url}
                 variant="outline"
