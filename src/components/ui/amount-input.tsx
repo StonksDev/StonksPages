@@ -57,8 +57,11 @@ const AmountInput = forwardRef<HTMLInputElement, AmountInputProps>(
             e.preventDefault();
             const paste = e.clipboardData.getData('text');
             const numericRegex = /^[0-9]*\.?[0-9]*$/;
+            const decimalIndex = paste.indexOf('.');
+            const hasValidDecimalPlaces = decimalIndex === -1
+                || paste.length - decimalIndex - 1 <= decimals;
 
-            if (numericRegex.test(paste)) {
+            if (numericRegex.test(paste) && hasValidDecimalPlaces) {
                 const numValue = parseFloat(paste);
                 if (!max || numValue <= max) {
                     onChange(paste);
@@ -105,4 +108,3 @@ const AmountInput = forwardRef<HTMLInputElement, AmountInputProps>(
 AmountInput.displayName = 'AmountInput';
 
 export { AmountInput };
-

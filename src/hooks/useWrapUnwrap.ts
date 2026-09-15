@@ -4,16 +4,16 @@ import { buildWrapTransaction, buildUnwrapTransaction, buildInitializeTransactio
 import { toast } from 'sonner';
 
 interface WrapParams {
-  amount: number;
+  amount: string;
 }
 
 interface UnwrapParams {
-  amount: number;
+  amount: string;
 }
 
 interface WrapUnwrapParams {
   mode: 'wrap' | 'unwrap';
-  amount: number;
+  amount: string;
 }
 
 export const useWrapToken = () => {
@@ -195,4 +195,3 @@ export const useInitializeProgram = () => {
     error,
   };
 };
-

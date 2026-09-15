@@ -13,6 +13,11 @@ import {
     WRAPPER_MINT,
     CONVERSION_RATIO
 } from '@/lib/token-wrapper';
+import {
+    floorToMultiple,
+    formatTokenAmount,
+    parseTokenAmount,
+} from '@/lib/token-amount';
 import { Loader2, ArrowUpDown, AlertTriangle, Wallet } from 'lucide-react';
 import Image from 'next/image';
 import { toast } from 'sonner';
@@ -52,48 +57,38 @@ export const SwapForm: React.FC = () => {
     const fromToken = isWrapping ? STNK_TOKEN : STONKS_TOKEN;
     const toToken = isWrapping ? STONKS_TOKEN : STNK_TOKEN;
     const fromBalance = isWrapping ? balances?.original : balances?.wrapper;
-    const maxBalance = fromBalance || 0;
+    const maxBalanceBaseUnits = BigInt(fromBalance || '0');
+    const conversionRatioBaseUnits = BigInt(CONVERSION_RATIO);
+    const maxSpendableBaseUnits = isWrapping
+        ? maxBalanceBaseUnits
+        : floorToMultiple(maxBalanceBaseUnits, conversionRatioBaseUnits);
 
-    // Format number helper - must be defined before use
-    const formatNumber = (num: number, maxDecimals: number = 6): string => {
-        if (num === 0) return '0';
-        
-        // Check if it's a whole number
-        const isWholeNumber = num % 1 === 0;
-        
-        if (isWholeNumber) {
-            // For whole numbers, use toLocaleString without decimals
-            return num.toLocaleString('en-US', {
-                minimumFractionDigits: 0,
-                maximumFractionDigits: 0,
-                useGrouping: true,
-            });
-        }
-        
-        // For decimal numbers, format with decimals
-        const formatted = num.toLocaleString('en-US', {
-            minimumFractionDigits: 0,
-            maximumFractionDigits: maxDecimals,
-            useGrouping: true,
-        });
-        
-        // Only remove trailing zeros after decimal point (not after commas)
-        // This regex matches: decimal point, optional digits, then trailing zeros at the end
-        // It preserves the number but removes unnecessary trailing zeros
-        return formatted.replace(/\.(\d*?)0+$/, (match, digits) => {
-            // If there are non-zero digits, keep them; otherwise remove the decimal point
-            return digits.length > 0 ? `.${digits}` : '';
-        });
+    const formatExactNumber = (amount: string, maxDecimals?: number): string => {
+        const [wholePart, fractionPart = ''] = amount.split('.');
+        const groupedWholePart = wholePart.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        const visibleFraction = maxDecimals === undefined
+            ? fractionPart
+            : fractionPart.slice(0, maxDecimals);
+
+        return visibleFraction ? `${groupedWholePart}.${visibleFraction}` : groupedWholePart;
     };
 
     const calculateToAmount = (fromAmount: string): string => {
-        if (!fromAmount || parseFloat(fromAmount) <= 0) return '0';
-        const numAmount = parseFloat(fromAmount);
+        if (!fromAmount) return '0';
 
-        if (isWrapping) {
-            return formatNumber(numAmount * CONVERSION_RATIO, toToken.decimals);
-        } else {
-            return formatNumber(numAmount / CONVERSION_RATIO, fromToken.decimals);
+        try {
+            const fromBaseUnits = parseTokenAmount(fromAmount, fromToken.decimals);
+            if (fromBaseUnits === BigInt(0)) return '0';
+
+            const toBaseUnits = isWrapping
+                ? fromBaseUnits * conversionRatioBaseUnits
+                : fromBaseUnits % conversionRatioBaseUnits === BigInt(0)
+                    ? fromBaseUnits / conversionRatioBaseUnits
+                    : BigInt(0);
+
+            return formatExactNumber(formatTokenAmount(toBaseUnits, toToken.decimals));
+        } catch {
+            return '0';
         }
     };
 
@@ -105,23 +100,39 @@ export const SwapForm: React.FC = () => {
     };
 
     const handleMaxClick = () => {
-        if (maxBalance > 0) {
-            setAmountFrom(maxBalance.toString());
+        if (maxSpendableBaseUnits > BigInt(0)) {
+            setAmountFrom(formatTokenAmount(maxSpendableBaseUnits, fromToken.decimals));
         }
     };
 
     const isValidAmount = (): boolean => {
-        if (!amountFrom || parseFloat(amountFrom) <= 0) return false;
-        if (parseFloat(amountFrom) > maxBalance) return false;
-        return true;
+        if (!amountFrom) return false;
+
+        try {
+            const amountBaseUnits = parseTokenAmount(amountFrom, fromToken.decimals);
+            if (amountBaseUnits <= BigInt(0) || amountBaseUnits > maxBalanceBaseUnits) return false;
+            if (!isWrapping && amountBaseUnits % conversionRatioBaseUnits !== BigInt(0)) return false;
+            return true;
+        } catch {
+            return false;
+        }
     };
 
     const getErrorMessage = (): string | undefined => {
         if (!amountFrom) return undefined;
-        const numAmount = parseFloat(amountFrom);
-        if (numAmount <= 0) return undefined;
-        if (numAmount > maxBalance) return 'Not Enough Tokens';
-        return undefined;
+
+        try {
+            const amountBaseUnits = parseTokenAmount(amountFrom, fromToken.decimals);
+            if (amountBaseUnits <= BigInt(0)) return 'Amount must be greater than zero';
+            if (amountBaseUnits > maxBalanceBaseUnits) return 'Not Enough Tokens';
+            if (!isWrapping && amountBaseUnits % conversionRatioBaseUnits !== BigInt(0)) {
+                const increment = formatTokenAmount(conversionRatioBaseUnits, fromToken.decimals);
+                return `Amount must be a multiple of ${increment} ${fromToken.symbol}. Use Max for the largest valid amount.`;
+            }
+            return undefined;
+        } catch (error) {
+            return error instanceof Error ? error.message : 'Enter a valid token amount';
+        }
     };
 
     const handleSubmit = async () => {
@@ -130,9 +141,8 @@ export const SwapForm: React.FC = () => {
             return;
         }
         if (!isValidAmount()) return;
-        const numAmount = parseFloat(amountFrom);
         try {
-            await wrapUnwrap({ mode: direction, amount: numAmount });
+            await wrapUnwrap({ mode: direction, amount: amountFrom });
             setAmountFrom('');
             if (isWrapping) {
                 setShowConfetti(true);
@@ -144,9 +154,9 @@ export const SwapForm: React.FC = () => {
         }
     };
 
-    const formatBalance = (balance: number | undefined, decimals: number): string => {
+    const formatBalance = (balance: string | undefined, decimals: number): string => {
         if (balance === undefined) return '0';
-        return formatNumber(balance, Math.min(decimals, 6));
+        return formatExactNumber(formatTokenAmount(balance, decimals), Math.min(decimals, 6));
     };
 
     return (
@@ -175,14 +185,14 @@ export const SwapForm: React.FC = () => {
                     <span className="text-primary/60 uppercase tracking-wide text-xs font-medium">From</span>
                     <button
                         onClick={handleMaxClick}
-                        disabled={!maxBalance || maxBalance === 0}
+                        disabled={maxSpendableBaseUnits === BigInt(0)}
                         className="inline-flex items-center gap-2 text-xs transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-medium leading-none"
                     >
                         <span className="leading-none">Max</span>
                         {balancesLoading ? (
                             <span className="animate-pulse leading-none">...</span>
                         ) : (
-                            <span className="font-mono leading-none">{formatBalance(maxBalance, fromToken.decimals)}</span>
+                            <span className="font-mono leading-none">{formatBalance(fromBalance, fromToken.decimals)}</span>
                         )}
                     </button>
                 </div>
@@ -213,6 +223,7 @@ export const SwapForm: React.FC = () => {
                             <AmountInput
                                 value={amountFrom}
                                 onChange={setAmountFrom}
+                                decimals={fromToken.decimals}
                                 placeholder={'0.0'}
                                 className="text-right text-xl sm:text-2xl md:text-3xl font-bold bg-transparent p-0 text-primary placeholder:text-primary/20 w-full max-w-full box-border"
                             />
@@ -266,7 +277,7 @@ export const SwapForm: React.FC = () => {
                         </div>
                         <div className="flex-1 text-right min-w-0">
                             <p className={`text-2xl md:text-3xl font-bold truncate ${
-                                parseFloat(amountTo) > 0 ? 'text-primary' : 'text-primary/50'
+                                amountTo !== '0' ? 'text-primary' : 'text-primary/50'
                             }`}>
                                 {amountTo}
                             </p>
@@ -346,4 +357,3 @@ export const SwapForm: React.FC = () => {
         </div>
     );
 };
-

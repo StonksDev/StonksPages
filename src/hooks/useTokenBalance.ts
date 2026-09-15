@@ -3,8 +3,10 @@ import { useConnection, useWallet } from '@solana/wallet-adapter-react';
 import { getUserTokenBalances, getTokenInfos, TokenInfo } from '@/lib/token-wrapper';
 
 export interface TokenBalances {
-  original: number;
-  wrapper: number;
+  /** Raw base-unit amount returned by Solana RPC. */
+  original: string;
+  /** Raw base-unit amount returned by Solana RPC. */
+  wrapper: string;
 }
 
 export interface TokenBalanceData {
@@ -20,7 +22,7 @@ export const useTokenBalance = () => {
   const { publicKey } = useWallet();
   
   const [data, setData] = useState<TokenBalanceData>({ 
-    balances: { original: 0, wrapper: 0 },
+    balances: { original: '0', wrapper: '0' },
     tokenInfos: null
   });
   const [isLoading, setIsLoading] = useState(false);
@@ -29,7 +31,7 @@ export const useTokenBalance = () => {
   const fetchBalances = useCallback(async () => {
     if (!connection) {
       setData({ 
-        balances: { original: 0, wrapper: 0 },
+        balances: { original: '0', wrapper: '0' },
         tokenInfos: null
       });
       return;
@@ -42,7 +44,7 @@ export const useTokenBalance = () => {
       // Fetch token info first (needed for proper decimal handling)
       const tokenInfos = await getTokenInfos(connection);
       
-      let balances = { original: 0, wrapper: 0 };
+      let balances = { original: '0', wrapper: '0' };
       
       // Only fetch balances if wallet is connected
       if (publicKey) {
@@ -54,7 +56,7 @@ export const useTokenBalance = () => {
       console.error('Error fetching token data:', err);
       setError(err instanceof Error ? err : new Error('Unknown error'));
       setData({ 
-        balances: { original: 0, wrapper: 0 },
+        balances: { original: '0', wrapper: '0' },
         tokenInfos: null
       });
     } finally {
@@ -92,4 +94,3 @@ export const useRefreshBalances = () => {
     }
   }, [connection, publicKey]);
 };
-

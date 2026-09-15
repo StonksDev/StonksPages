@@ -23,6 +23,7 @@ import {
 
 // Import the IDL
 import TokenWrapperIDL from '../idl/token_wrapper.json';
+import { formatTokenAmount, parseTokenAmount } from './token-amount';
 
 // Program constants
 export const PROGRAM_ID = new PublicKey(process.env.NEXT_PUBLIC_TOKEN_WRAPPER_PROGRAM_ID!);
@@ -105,14 +106,14 @@ export const getTokenInfos = async (
 };
 
 // Helper function to convert UI amount to program amount (with decimals)
-export const toTokenAmount = (uiAmount: number, decimals: number): BN => {
-  return new BN(uiAmount * Math.pow(10, decimals));
+export const toTokenAmount = (uiAmount: string, decimals: number): BN => {
+  return new BN(parseTokenAmount(uiAmount, decimals).toString(), 10);
 };
 
 // Helper function to convert program amount to UI amount (with decimals)
-export const fromTokenAmount = (amount: BN | bigint | string, decimals: number): number => {
+export const fromTokenAmount = (amount: BN | bigint | string, decimals: number): string => {
   const amountStr = typeof amount === 'string' ? amount : amount.toString();
-  return parseFloat(amountStr) / Math.pow(10, decimals);
+  return formatTokenAmount(amountStr, decimals);
 };
 
 // PDAs helper functions
@@ -181,7 +182,7 @@ export const createTokenWrapperProgram = (
 export const buildWrapTransaction = async (
   connection: Connection,
   userPublicKey: PublicKey,
-  amount: number
+  amount: string
 ): Promise<Transaction> => {
   const transaction = new Transaction();
 
@@ -190,6 +191,9 @@ export const buildWrapTransaction = async (
 
   // Convert amount to BN using actual decimals
   const amountBN = toTokenAmount(amount, originalTokenInfo.decimals);
+  if (amountBN.isZero()) {
+    throw new Error('Amount must be greater than zero');
+  }
 
   // Get user token accounts
   const userOriginalAccount = await getAssociatedTokenAddress(
@@ -260,7 +264,7 @@ export const buildWrapTransaction = async (
 export const buildUnwrapTransaction = async (
   connection: Connection,
   userPublicKey: PublicKey,
-  wrapperAmount: number
+  wrapperAmount: string
 ): Promise<Transaction> => {
   const transaction = new Transaction();
 
@@ -269,6 +273,12 @@ export const buildUnwrapTransaction = async (
 
   // Convert amount to BN using actual decimals
   const wrapperAmountBN = toTokenAmount(wrapperAmount, wrapperTokenInfo.decimals);
+  if (wrapperAmountBN.isZero()) {
+    throw new Error('Amount must be greater than zero');
+  }
+  if (wrapperAmountBN.modn(CONVERSION_RATIO) !== 0) {
+    throw new Error('Unwrap amount must be divisible by the conversion ratio');
+  }
 
   // Get user token accounts
   const userOriginalAccount = await getAssociatedTokenAddress(
@@ -328,20 +338,20 @@ export const getTokenBalance = async (
   connection: Connection,
   userPublicKey: PublicKey,
   mint: PublicKey
-): Promise<number> => {
+): Promise<string> => {
   try {
     const tokenAccount = await getAssociatedTokenAddress(mint, userPublicKey);
     const accountInfo = await connection.getAccountInfo(tokenAccount);
 
     if (!accountInfo) {
-      return 0;
+      return '0';
     }
 
     const balance = await connection.getTokenAccountBalance(tokenAccount);
-    return parseFloat(balance.value.amount) / Math.pow(10, balance.value.decimals);
+    return balance.value.amount;
   } catch (error) {
     console.error("Error getting token balance:", error);
-    return 0;
+    return '0';
   }
 };
 
@@ -416,7 +426,7 @@ export const checkProgramInitialized = async (
 export const buildTransferToVaultTransaction = async (
   connection: Connection,
   ownerPublicKey: PublicKey,
-  amount: number
+  amount: string
 ): Promise<Transaction> => {
   const transaction = new Transaction();
 
@@ -447,4 +457,3 @@ export const buildTransferToVaultTransaction = async (
 
   return transaction;
 };
-
