@@ -18,7 +18,8 @@ interface WrapUnwrapParams {
 
 export const useWrapToken = () => {
   const { connection } = useConnection();
-  const { publicKey, sendTransaction } = useWallet();
+  const { publicKey, sendTransaction, wallet } = useWallet();
+  const isSquadsX = wallet?.adapter.name === 'SquadsX';
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
 
@@ -34,7 +35,9 @@ export const useWrapToken = () => {
       const transaction = await buildWrapTransaction(connection, publicKey, amount);
       const signature = await sendTransaction(transaction, connection);
       
-      toast.success(`Wrap successful! Signature: ${signature.slice(0, 8)}...`);
+      toast.success(isSquadsX
+        ? 'Proposal created in Squads. Approve and execute it there.'
+        : `Wrap successful! Signature: ${signature.slice(0, 8)}...`);
       return signature;
     } catch (err) {
       const error = err instanceof Error ? err : new Error('Wrap transaction failed');
@@ -45,7 +48,7 @@ export const useWrapToken = () => {
     } finally {
       setIsLoading(false);
     }
-  }, [connection, publicKey, sendTransaction]);
+  }, [connection, isSquadsX, publicKey, sendTransaction]);
 
   return {
     mutate,
@@ -56,7 +59,8 @@ export const useWrapToken = () => {
 
 export const useUnwrapToken = () => {
   const { connection } = useConnection();
-  const { publicKey, sendTransaction } = useWallet();
+  const { publicKey, sendTransaction, wallet } = useWallet();
+  const isSquadsX = wallet?.adapter.name === 'SquadsX';
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
 
@@ -72,7 +76,9 @@ export const useUnwrapToken = () => {
       const transaction = await buildUnwrapTransaction(connection, publicKey, amount);
       const signature = await sendTransaction(transaction, connection);
       
-      toast.success(`Unwrap successful! Signature: ${signature.slice(0, 8)}...`);
+      toast.success(isSquadsX
+        ? 'Proposal created in Squads. Approve and execute it there.'
+        : `Unwrap successful! Signature: ${signature.slice(0, 8)}...`);
       return signature;
     } catch (err) {
       const error = err instanceof Error ? err : new Error('Unwrap transaction failed');
@@ -83,7 +89,7 @@ export const useUnwrapToken = () => {
     } finally {
       setIsLoading(false);
     }
-  }, [connection, publicKey, sendTransaction]);
+  }, [connection, isSquadsX, publicKey, sendTransaction]);
 
   return {
     mutate,
@@ -95,7 +101,8 @@ export const useUnwrapToken = () => {
 // Unified hook for both wrap and unwrap operations
 export const useWrapUnwrap = () => {
   const { connection } = useConnection();
-  const { publicKey, sendTransaction } = useWallet();
+  const { publicKey, sendTransaction, wallet } = useWallet();
+  const isSquadsX = wallet?.adapter.name === 'SquadsX';
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
 
@@ -115,7 +122,9 @@ export const useWrapUnwrap = () => {
       const signature = await sendTransaction(transaction, connection);
       
       const actionText = mode === 'wrap' ? 'Wrap' : 'Unwrap';
-      toast.success(`${actionText} successful! Signature: ${signature.slice(0, 8)}...`);
+      toast.success(isSquadsX
+        ? 'Proposal created in Squads. Approve and execute it there.'
+        : `${actionText} successful! Signature: ${signature.slice(0, 8)}...`);
       return signature;
     } catch (err) {
       const actionText = mode === 'wrap' ? 'Wrap' : 'Unwrap';
@@ -127,7 +136,7 @@ export const useWrapUnwrap = () => {
     } finally {
       setIsLoading(false);
     }
-  }, [connection, publicKey, sendTransaction]);
+  }, [connection, isSquadsX, publicKey, sendTransaction]);
 
   return {
     wrapUnwrap,

@@ -26,7 +26,7 @@ import { StonksConfetti } from '@/components/StonksConfetti';
 type SwapDirection = 'wrap' | 'unwrap';
 
 export const SwapForm: React.FC = () => {
-    const { publicKey } = useWallet();
+    const { publicKey, wallet } = useWallet();
     const { setVisible } = useWalletModal();
     const { data: balances, tokenInfos, isLoading: balancesLoading, refetch: refetchBalances } = useTokenBalance();
     const { wrapUnwrap, isPending } = useWrapUnwrap();
@@ -35,6 +35,7 @@ export const SwapForm: React.FC = () => {
     const [amountFrom, setAmountFrom] = useState('');
     const [showConfetti, setShowConfetti] = useState(false);
     const buttonRef = useRef<HTMLButtonElement>(null);
+    const isSquadsX = wallet?.adapter.name === 'SquadsX';
 
     const originalTokenInfo = tokenInfos?.original;
     const wrapperTokenInfo = tokenInfos?.wrapper;
@@ -144,11 +145,13 @@ export const SwapForm: React.FC = () => {
         try {
             await wrapUnwrap({ mode: direction, amount: amountFrom });
             setAmountFrom('');
-            if (isWrapping) {
+            if (isWrapping && !isSquadsX) {
                 setShowConfetti(true);
                 toast.success('STONKS 📈🏆');
             }
-            setTimeout(() => refetchBalances(), 1000);
+            if (!isSquadsX) {
+                setTimeout(() => refetchBalances(), 1000);
+            }
         } catch {
             toast.error('NOT STONKS 📉💩');
         }

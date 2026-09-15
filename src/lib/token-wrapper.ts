@@ -13,7 +13,6 @@ import {
 } from '@coral-xyz/anchor';
 import {
   TOKEN_PROGRAM_ID,
-  getAssociatedTokenAddress,
   createAssociatedTokenAccountInstruction,
   createTransferInstruction,
   ASSOCIATED_TOKEN_PROGRAM_ID,
@@ -23,6 +22,7 @@ import {
 
 // Import the IDL
 import TokenWrapperIDL from '../idl/token_wrapper.json';
+import { getWalletTokenAddress } from './associated-token-address';
 import { formatTokenAmount, parseTokenAmount } from './token-amount';
 
 // Program constants
@@ -196,12 +196,12 @@ export const buildWrapTransaction = async (
   }
 
   // Get user token accounts
-  const userOriginalAccount = await getAssociatedTokenAddress(
+  const userOriginalAccount = await getWalletTokenAddress(
     ORIGINAL_MINT,
     userPublicKey
   );
 
-  const userWrapperAccount = await getAssociatedTokenAddress(
+  const userWrapperAccount = await getWalletTokenAddress(
     WRAPPER_MINT,
     userPublicKey
   );
@@ -281,12 +281,12 @@ export const buildUnwrapTransaction = async (
   }
 
   // Get user token accounts
-  const userOriginalAccount = await getAssociatedTokenAddress(
+  const userOriginalAccount = await getWalletTokenAddress(
     ORIGINAL_MINT,
     userPublicKey
   );
 
-  const userWrapperAccount = await getAssociatedTokenAddress(
+  const userWrapperAccount = await getWalletTokenAddress(
     WRAPPER_MINT,
     userPublicKey
   );
@@ -340,7 +340,7 @@ export const getTokenBalance = async (
   mint: PublicKey
 ): Promise<string> => {
   try {
-    const tokenAccount = await getAssociatedTokenAddress(mint, userPublicKey);
+    const tokenAccount = await getWalletTokenAddress(mint, userPublicKey);
     const accountInfo = await connection.getAccountInfo(tokenAccount);
 
     if (!accountInfo) {
@@ -437,7 +437,7 @@ export const buildTransferToVaultTransaction = async (
   const amountBN = toTokenAmount(amount, wrapperTokenInfo.decimals);
 
   // Get owner's wrapper token account
-  const ownerWrapperAccount = await getAssociatedTokenAddress(
+  const ownerWrapperAccount = await getWalletTokenAddress(
     WRAPPER_MINT,
     ownerPublicKey
   );
