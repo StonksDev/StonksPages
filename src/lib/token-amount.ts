@@ -18,7 +18,7 @@ export const parseTokenAmount = (uiAmount: string, decimals: number): bigint => 
   assertDecimals(decimals);
 
   const normalized = uiAmount.trim();
-  if (!/^\d+(?:\.\d*)?$/.test(normalized)) {
+  if (!/^(?:\d+(?:\.\d*)?|\.\d+)$/.test(normalized)) {
     throw new Error('Enter a valid token amount');
   }
 
@@ -29,7 +29,7 @@ export const parseTokenAmount = (uiAmount: string, decimals: number): bigint => 
 
   const scale = TEN ** BigInt(decimals);
   const paddedFraction = fractionPart.padEnd(decimals, '0');
-  const baseUnits = BigInt(wholePart) * scale + BigInt(paddedFraction || '0');
+  const baseUnits = BigInt(wholePart || '0') * scale + BigInt(paddedFraction || '0');
 
   if (baseUnits > U64_MAX) {
     throw new Error('Amount exceeds the maximum token amount');

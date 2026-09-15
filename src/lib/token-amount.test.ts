@@ -14,6 +14,10 @@ test('parses amounts above Number.MAX_SAFE_INTEGER without losing precision', ()
   );
 });
 
+test('parses a leading-decimal amount accepted by the input field', () => {
+  assert.equal(parseTokenAmount('.5', 9), BigInt('500000000'));
+});
+
 test('formats base units without converting through a number', () => {
   assert.equal(
     formatTokenAmount('14001227025973830', 9),
