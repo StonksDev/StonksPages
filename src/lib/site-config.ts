@@ -8,3 +8,4 @@ export const TITLE_TEMPLATE = "%s | Stonks";
 export const OG_IMAGE = "/images/og-home-stonks.png";
 export const THEME_COLOR = "#ffffff";
 export const BACKGROUND_COLOR = "#0033cc";
+export const TELEGRAM_URL = "https://t.me/StonksSOLMemecoin";

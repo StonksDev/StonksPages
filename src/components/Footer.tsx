@@ -23,7 +23,7 @@ const SOCIAL_LINKS = [
 export default function Footer() {
     return (
         <Section variant="dark">
-            <ContentContainer className="md:flex-col items-center text-center gap-3">
+            <ContentContainer className="md:flex-col items-center text-center gap-6 md:gap-8">
                 <Image
                     src="/images/logo.webp"
                     alt="Stonks guy's floating head"
