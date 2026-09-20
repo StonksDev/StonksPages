@@ -24,8 +24,9 @@ export default function About() {
             </Link>
             , starring the enigmatic{" "}
             <Link href="https://knowyourmeme.com/memes/meme-man">Meme Man</Link>
-            . His birth on the Solana blockchain was initially overlooked by
-            most - until now.
+            . It became how the internet jokes about reckless trading.
+            WallStreetBets, GameStop, the dictionaries. His birth on the Solana
+            blockchain was initially overlooked by most - until now.
           </p>
           <p>
             In November 2024, <Link href="https://x.com/STONKS_SOL/status/1860765137680159089">the community revived $STNK</Link> to reclaim its rightful place

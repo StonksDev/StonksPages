@@ -4,6 +4,7 @@ import ContentContainer from "../../components/ContentContainer";
 import ContentTextContainer from "../../components/ContentTextContainer";
 import SectionHeading from "../../components/SectionHeading";
 import ContentImageContainer from "../../components/ContentImageContainer";
+import Button from "../../components/Button";
 import { Link } from "../../components/Link";
 
 export default function IPSection() {
@@ -14,13 +15,13 @@ export default function IPSection() {
           <SectionHeading>Intlektual propert</SectionHeading>
           <p>
             Stonks is the owner of the full onchain IP rights to the original
-            Stonks meme, created by Henry Hooper. This means that $STONKS is the
-            only project that has the copyright license to use and tokenise the
-            meme.
+            Stonks meme, created by Henry Hooper. The image that went from a
+            2017 Facebook shitpost to the face of retail finance. $STONKS is
+            the only project with the copyright license to use and tokenise
+            the meme.
           </p>
           <p>
-            As the rightful owner, We have
-            also secured the coveted &apos;Stonks&apos; handle on Stocktwits:{" "}
+            We also grabbed the Stonks handle on Stocktwits:{" "}
             <Link href="https://stocktwits.com/stonks">
               stocktwits.com/stonks
             </Link>
@@ -34,10 +35,15 @@ export default function IPSection() {
             support.
           </p>
           <p>
-            Not only is $STNK the first memecoin ever deployed on Solana, it
-            also has the provenance of being supported by the original meme (and
-            artist) that inspired it. Community-owned STONKS!
+            $STNK is the first memecoin ever deployed on Solana, and it comes
+            with the original meme (and artist) that inspired it.
+            Community-owned STONKS!
           </p>
+          <div className="flex flex-wrap gap-4 my-3">
+            <Button href="/ip" variant="outline-white" size="large">
+              More on the IP
+            </Button>
+          </div>
         </ContentTextContainer>
         <ContentImageContainer className="max-w-[420px]">
           <Image

@@ -12,7 +12,20 @@ interface Props {
     variant?: "default" | "sticky";
 }
 
-const NAV_LINKS = [
+const NAV_LINKS: {
+    href: string;
+    label: string;
+    title: string;
+    icon: string;
+    external: boolean;
+}[] = [
+    {
+        href: "/ip",
+        label: "IP",
+        title: "Stonks intellectual property",
+        icon: "/images/icons/ip.png",
+        external: false,
+    },
     {
         href: "/stonksplit",
         label: "Stonksplit",
@@ -78,14 +91,14 @@ export default function NavigationBar({ variant = "default" }: Props) {
                                 title={link.title}
                                 variant="borderless"
                                 external={link.external}
-                                className="gap-2 p-2"
+                                className="gap-3 p-2"
                             >
                                 <Image
                                     src={link.icon}
                                     alt={`${link.label} icon`}
-                                    width={32}
-                                    height={32}
-                                    className="w-10 h-10 rounded-full"
+                                    width={40}
+                                    height={40}
+                                    className="nav-icon-glow w-10 h-10 shrink-0 rounded-full object-cover"
                                     priority
                                 />
                                 <span className={cn(

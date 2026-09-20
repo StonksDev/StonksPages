@@ -288,6 +288,7 @@
       position: absolute;
       inset: 0;
       z-index: -1;
+      border-radius: inherit;
       background-image: var(--background-image-rainbow);
       background-size: 200% auto;
       opacity: 0;
@@ -319,7 +320,13 @@
 }
 
 @layer components {
+  summary {
+    list-style: none;
+  }
 
+  summary::-webkit-details-marker {
+    display: none;
+  }
 }
 
 .wallet-adapter-dropdown {
