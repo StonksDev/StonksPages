@@ -11,12 +11,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
             priority: 1,
         },
         {
-            url: 'https://stonkscoin.org/stonksplit',
-            lastModified: new Date(),
-            changeFrequency: 'monthly',
-            priority: 0.9,
-        },
-        {
             url: 'https://stonkscoin.org/ip',
             lastModified: new Date(),
             changeFrequency: 'monthly',

@@ -11,11 +11,14 @@ import ConsoleEasterEgg from "@/content/homepage/ConsoleEasterEgg";
 import Page from "@/components/Page";
 
 const ORG_NAME = "Stonks";
-const ORG_ALTERNATE_NAME = "$STONKS";
+const ORG_ALTERNATE_NAME = "$STNK";
 const ORG_URL = "https://stonkscoin.org";
 const ORG_LOGO = "https://stonkscoin.org/images/logo.webp";
 const ORG_FOUNDING_DATE = "2021-04-02";
 const ORG_SAME_AS = [
+  "https://coinmarketcap.com/currencies/stonks/",
+  "https://www.coingecko.com/en/coins/stonks",
+  "https://dexscreener.com/solana/eyktefod1gagsum1hxmepqkitffk9xczkqlpx2vkiceg",
   "https://twitter.com/STONKS_SOL",
   "https://t.me/StonksSOLMemecoin",
   "https://www.tiktok.com/@mrsuccstonks",
@@ -23,7 +26,7 @@ const ORG_SAME_AS = [
   "https://stocktwits.com/stonks",
 ];
 const ORG_DESCRIPTION =
-  "The first memecoin on Solana. Community owned with locked liquidity and fully onchain IP rights.";
+  "Stonks ($STNK) is the first memecoin on Solana. Community owned with locked liquidity and fully onchain IP rights.";
 
 export default function Home() {
   const jsonLd = {

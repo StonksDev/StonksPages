@@ -27,13 +27,6 @@ const NAV_LINKS: {
         external: false,
     },
     {
-        href: "/stonksplit",
-        label: "Stonksplit",
-        title: "Swap $STNK for $STONKS",
-        icon: "/images/icons/stonksplit.png",
-        external: false,
-    },
-    {
         href: "https://locker.stonkscoin.org",
         label: "Locker",
         title: "Lock or view locked stonks",

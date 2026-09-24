@@ -16,6 +16,10 @@ const URL = "https://stonkscoin.org/stonksplit";
 export const metadata: Metadata = {
     title: TITLE,
     description: DESCRIPTION,
+    robots: {
+        index: false,
+        follow: false,
+    },
     openGraph: {
         type: "website",
         url: URL,

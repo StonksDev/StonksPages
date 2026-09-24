@@ -40,14 +40,6 @@ export default function HowToBuy() {
             </Link>{" "}
             and swap SOL for $STNK.
           </p>
-          <ContentHeading className="text-xl">4. Wrap to $STONKS</ContentHeading>
-          <p>
-            Use the{" "}
-            <Link href="/stonksplit">
-              stonksplit
-            </Link>{" "}
-            to wrap your $STNK into $STONKS.<br />Now you own the real thing.
-          </p>
         </ContentTextContainer>
         <ContentImageContainer className="max-w-[480px]">
           <Image

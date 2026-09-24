@@ -57,8 +57,8 @@ export default function Footer() {
                 </ul>
 
                 <small className="max-w-[720px]">
-                    $STNK and $STONKS are memecoins with no intrinsic value or expectation
-                    of financial return. There is no formal team or roadmap. The coins are
+                    Stonks ($STNK) is a memecoin with no intrinsic value or expectation
+                    of financial return. There is no formal team or roadmap. The coin is
                     completely useless and for entertainment purposes only.
                 </small>
         </ContentContainer>

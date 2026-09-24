@@ -32,18 +32,12 @@ export default function Hero() {
               STONKS
             </h1>
             <h2 className="text-xl leading-8 font-semibold">
-              The first memecoin on Solana
+              $STNK is the first memecoin on Solana.
               <br />
-              $STNK anchors $STONKS
+              There is no second first.
             </h2>
 
             <div className="flex flex-row flex-wrap gap-5 my-5 justify-center md:justify-start">
-              <Button
-                href="/stonksplit"
-                variant="outline-white"
-                size="large">
-                $STNK ⇄ $STONKS
-              </Button>
               <Button
                 href="https://jup.ag/swap/SOL-STNK"
                 external
