@@ -34,7 +34,6 @@ export const metadata: Metadata = {
     "what does stonks mean",
     "first memecoin on Solana",
     "STNK",
-    "STONKS",
     "web3",
     "commercial rights",
   ],

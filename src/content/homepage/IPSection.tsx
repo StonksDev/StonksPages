@@ -16,7 +16,7 @@ export default function IPSection() {
           <p>
             Stonks is the owner of the full onchain IP rights to the original
             Stonks meme, created by Henry Hooper. The image that went from a
-            2017 Facebook shitpost to the face of retail finance. $STONKS is
+            2017 Facebook shitpost to the face of retail finance. $STNK is
             the only project with the copyright license to use and tokenise
             the meme.
           </p>

@@ -9,7 +9,6 @@ import { Link } from "../../components/Link";
 import { shortenAddress } from "../../lib/shorten-address";
 
 const ORIGINAL_TOKEN_ADDRESS = "43VWkd99HjqkhFTZbWBpMpRhjG469nWa7x7uEsgSH7We";
-const WRAPPER_TOKEN_ADDRESS = process.env.NEXT_PUBLIC_WRAPPER_TOKEN_ADDRESS || "";
 
 export default function About() {
   return (
@@ -41,7 +40,7 @@ export default function About() {
           <ContentHeading>Don trus, veryfi.</ContentHeading>
           <p>Don&apos;t just trust the narrative, verify the timestamps yourself.</p>
           <p>
-            <strong>Original $STNK</strong> deployed {" "}
+            $STNK was deployed {" "}
             <Link href="https://solscan.io/tx/2NcXezaNUZrfhJW53aoEbejCFNYu7x1krAC1tPFzjL6oyYzcP4ovXsdYyJTCWHiK1baR32zM7DEpmMGWgcx8L8PD">
               April 2, 2021
             </Link>
@@ -54,23 +53,6 @@ export default function About() {
               <code>
                 <span className="hidden min-[560px]:inline min-[768px]:hidden min-[1080px]:inline">{ORIGINAL_TOKEN_ADDRESS}</span>
                 <span className="inline min-[560px]:hidden min-[768px]:inline min-[1080px]:hidden">{shortenAddress(ORIGINAL_TOKEN_ADDRESS, 6, 6)}</span>
-              </code>
-            </Link>
-          </p>
-          <p>
-            <strong>Upgraded $STONKS</strong> deployed {" "}
-            <Link href="https://solscan.io/tx/4rnKLn6x3mKuV2n8nrgHaaVdcQbVZrW1q7FCAGsQxnsejpCG3d3w8YS9taDK32wcHsjHG84NC18KqcWS1eb1jBoV">
-              November 23, 2025
-            </Link>
-            <br />
-            CA:{" "}
-            <Link
-              href={`https://solscan.io/token/${WRAPPER_TOKEN_ADDRESS}`}
-              className="no-underline"
-            >
-              <code>
-                <span className="hidden min-[560px]:inline min-[768px]:hidden min-[1080px]:inline">{WRAPPER_TOKEN_ADDRESS}</span>
-                <span className="inline min-[560px]:hidden min-[768px]:inline min-[1080px]:hidden">{shortenAddress(WRAPPER_TOKEN_ADDRESS, 8, 6)}</span>
               </code>
             </Link>
           </p>

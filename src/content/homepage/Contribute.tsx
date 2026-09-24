@@ -59,7 +59,7 @@ const CONTRIBUTE_CARDS = [
     title: "The $1B Vault",
     platform: "Stonks Locker",
     description:
-      "16% of the supply (~91k $STNK) is vaulted. The Stonks Locker is absolute. Assets are locked until $1B market cap. Incentives are aligned.",
+      "21% of the supply (>122,500 $STNK) is vaulted. The Stonks Locker is absolute. Assets are locked until $1B market cap. Incentives are aligned.",
     cta: "View the Stonks Locker",
     href: "https://locker.stonkscoin.org/",
     icon: "/images/icons/stonkslocker-dense.png",

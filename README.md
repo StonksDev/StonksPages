@@ -1,4 +1,4 @@
-# Stonks Website ($STNK ⇄ $STONKS)
+# Stonks Website ($STNK)
 
 <div align="center">
   <img src="public/images/stonks.webp" alt="Stonks" width="400" />
