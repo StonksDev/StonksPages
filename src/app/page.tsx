@@ -26,7 +26,7 @@ const ORG_SAME_AS = [
   "https://stocktwits.com/stonks",
 ];
 const ORG_DESCRIPTION =
-  "Stonks ($STNK) is the first memecoin on Solana. Community owned with locked liquidity and fully onchain IP rights.";
+  "The first memecoin on Solana. Community owned with locked liquidity and fully onchain IP rights.";
 
 export default function Home() {
   const jsonLd = {
